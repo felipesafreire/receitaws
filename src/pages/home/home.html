@@ -1,14 +1,56 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      ReceitaWS
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label color="primary" stacked>CNPJ</ion-label>
+      <ion-input type="text" placeholder="Digite um CNPJ" [(ngModel)]="cnpj"
+                 [brmasker]="{mask:'00.000.000/0000-00', len:18}"
+                 required clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button block ion-button icon-start (click)="buscar()">
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        Pesquisar
+      </button>
+    </ion-item>
+
+  </ion-list>
+
+  <div *ngIf="empresa!=''">
+
+    <h4 style="padding-left: 16px;">Dados da empresa</h4>
+
+    <ion-card>
+
+      <ion-card-content>
+
+        <h3><strong>Razão Social:</strong> {{empresa.nome}}</h3>
+        <h3><strong>CNPJ:</strong> {{empresa.cnpj}}</h3>
+        <h3><strong>Fantasia:</strong> {{empresa.fantasia}}</h3>
+        <h3><strong>Telefone:</strong> {{empresa.telefone}}</h3>
+        <h3><strong>E-mail:</strong> {{empresa.email}}</h3>
+        <h3><strong>Situação:</strong> {{empresa.situacao}}</h3>
+        <h3><strong>Capital Social:</strong> {{empresa.capital_social | currency:'BRL':true}}</h3>
+        <h3><strong>Cidade:</strong> {{empresa.municipio}} / {{empresa.uf}}</h3>
+        <h3><strong>Endereço:</strong> {{empresa.logradouro}}, Nº {{empresa.numero}}</h3>
+        <h3><strong>CEP:</strong> {{empresa.cep}} </h3>
+        <h3><strong>Bairro:</strong> {{empresa.bairro}} </h3>
+        <h3><strong>Atividade Principal:</strong> {{empresa.atividade_principal[0].text}}</h3>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
 </ion-content>
